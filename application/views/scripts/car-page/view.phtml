@@ -1,0 +1,305 @@
+<head>
+    <script>
+        //Create the function for when the page loads
+        window.onload = function() {
+            //Create a variable by getting the php div whose id is "mainCarPicture" from the body
+            var mainCarPic = document.getElementById("mainCarPicture");
+            //Create a variable by getting the php div whose id is "carPictureSlides" from the body
+            var carPicSlides = document.getElementById("carPictureSlides");
+            //Clear the main car picture div of all children
+            mainCarPic.removeChild(mainCarPic.childNodes[0]);
+            //Clear the picture slide div of all children
+            carPicSlides.removeChild(carPicSlides.childNodes[0]);
+            //Create a variable for the main car picture and append it to the mainCarPic div
+            var carPic1 = mainCarPic.appendChild(document.createElement("img"));
+            //If the main car picture is empty
+            if ('<?php echo ($this->escape($this->car->carPicture)); ?>' === "") {
+                //Set the image source as the "not uploaded" image
+                carPic1.setAttribute("src", "images/pictureNotUploaded.bmp");
+                //Otherwise
+            } else {
+                //Set the image image source as the car picture as defined by the view controller
+                carPic1.setAttribute("src", "<?php echo $this->baseUrl()?>/images/<?php echo ($this->escape($this->car->carPicture)); ?>.jpg");
+                //Create a variable for storing a bootstrap table
+                var slideTable = carPicSlides.appendChild(document.createElement("div"));
+                //Set the variable's class as the bootstrap container (fluid)
+                slideTable.setAttribute("class", "container-fluid");
+                //Create a variable for a row for the bootstrap table
+                var slideRow = slideTable.appendChild(document.createElement("div"));
+                //Set the variable's class as "row" for bootstrap to read
+                slideRow.setAttribute("class", "row");
+                //Create the image variable for the first image in the slide div
+                var carPic1Slide = carPicSlides.appendChild(document.createElement("img"));
+                //Define the image source as the same image as the main image div
+                carPic1Slide.setAttribute("src", "<?php echo $this->baseUrl()?>/images/<?php echo ($this->escape($this->car->carPicture)); ?>.jpg");
+                //Define the first image's alternative text as "no picture"
+                carPic1Slide.setAttribute("alt", "No Picture");
+                //Define the ID for CSS responsive design
+                carPic1Slide.setAttribute("id", "carPicSlide");
+                //Assign an onclick function for whenever the first image on the slide is clicked
+                carPic1Slide.onclick = function () {
+                    //Change the value of the main image to the same as the first image in slide
+                    carPic1.setAttribute("src", "<?php echo $this->baseUrl()?>/images/<?php echo ($this->escape($this->car->carPicture)); ?>.jpg");
+                };
+            }
+            //Define the alternative text of the main image as "no picture"
+            carPic1.setAttribute("alt", "No Picture");
+            //Define the ID for CSS responsive design
+            carPic1.setAttribute("id", "carPageMainPic");
+
+            //If the value for the second image is empty
+            if ('<?php echo ($this->escape($this->car->carPic2)); ?>' === "") {
+                //Set the image source as the "not uploaded" image
+                carPic2.setAttribute("src", "<?php echo $this->baseUrl()?>/images/pictureNotUploaded.bmp");
+            } else {
+                //Define an image variable for the second image and append to slide
+                var carPic2 = carPicSlides.appendChild(document.createElement("img"));
+                //Set the source of the second image according to the value in the view controller
+                carPic2.setAttribute("src", "<?php echo $this->baseUrl()?>/images/<?php echo ($this->escape($this->car->carPic2)); ?>.jpg");
+                //Define the alternative text of the image as "no picture"
+                carPic2.setAttribute("alt", "No Picture");
+                //Define the ID for CSS responsive design
+                carPic2.setAttribute("id", "carPicSlide");
+                //Assign an onclick function for whenever the second image on the slide is clicked    
+                carPic2.onclick = function () {
+                    //Change the value of the main image to the same as the second image in slide
+                    carPic1.setAttribute("src", "<?php echo $this->baseUrl()?>/images/<?php echo ($this->escape($this->car->carPic2)); ?>.jpg");
+                };
+            }
+            //If the value for the third image is empty
+            if ('<?php echo ($this->escape($this->car->carPic3)); ?>' === "") {
+                //Set the image source as the "not uploaded" image
+                carPic3.setAttribute("src", "<?php echo $this->baseUrl()?>/images/pictureNotUploaded.bmp");
+              //Otherwise 
+            } else {
+                var carPic3 = carPicSlides.appendChild(document.createElement("img"));
+                carPic3.setAttribute("src", "<?php echo $this->baseUrl()?>/images/<?php echo ($this->escape($this->car->carPic3)); ?>.jpg");
+                //Define the alternative text of the main image as "no picture"
+                carPic3.setAttribute("alt", "No Picture");
+                //Define the ID for CSS responsive design
+                carPic3.setAttribute("id", "carPicSlide");
+                //Assign an onclick function for whenever the third image on the slide is clicked
+                carPic3.onclick = function () {
+                    //Change the value of the main image to the same as the third image in slide
+                    carPic1.setAttribute("src", "<?php echo $this->baseUrl()?>/images/<?php echo ($this->escape($this->car->carPic3)); ?>.jpg");
+                };
+            }
+            //If the value for the fourth image is empty
+            if ('<?php echo ($this->escape($this->car->carPic4)); ?>' === "") {
+                //Set the image source as the "not uploaded" image
+                carPic4.setAttribute("src", "<?php echo $this->baseUrl()?>/images/pictureNotUploaded.bmp");
+               //Otherwise 
+            } else {
+                var carPic4 = carPicSlides.appendChild(document.createElement("img"));
+                carPic4.setAttribute("src", "<?php echo $this->baseUrl()?>/images/<?php echo ($this->escape($this->car->carPic4)); ?>.jpg");
+                //Define the alternative text of the main image as "no picture"
+                carPic4.setAttribute("alt", "No Picture");
+                //Define the ID for CSS responsive design
+                carPic4.setAttribute("id", "carPicSlide");
+                //Assign an onclick function for whenever the fourth image on the slide is clicked
+                carPic4.onclick = function () {
+                    //Change the value of the main image to the same as the fourth image in slide
+                    carPic1.setAttribute("src", "<?php echo $this->baseUrl()?>/images/<?php echo ($this->escape($this->car->carPic4)); ?>.jpg");
+                };
+            }
+            //If the value for the fifth image is empty
+            if ('<?php echo ($this->escape($this->car->carPic5)); ?>' === "") {
+                //Set the image source as the "not uploaded" image
+                carPic5.setAttribute("src", "<?php echo $this->baseUrl()?>/images/pictureNotUploaded.bmp");
+            //Otherwise 
+            } else {
+                var carPic5 = carPicSlides.appendChild(document.createElement("img"));
+                carPic5.setAttribute("src", "<?php echo $this->baseUrl()?>/images/<?php echo ($this->escape($this->car->carPic5)); ?>.jpg");
+                //Define the alternative text of the main image as "no picture"
+                carPic5.setAttribute("alt", "No Picture");
+                //Define the ID for CSS responsive design
+                carPic5.setAttribute("id", "carPicSlide");
+                //Assign an onclick function for whenever the fifth image on the slide is clicked
+                carPic5.onclick = function () {
+                    //Change the value of the main image to the same as the fifth image in slide
+                    carPic1.setAttribute("src", "<?php echo $this->baseUrl()?>/images/<?php echo ($this->escape($this->car->carPic5)); ?>.jpg");
+                };
+            }
+            //If the value for the sixth image is empty
+            if ('<?php echo ($this->escape($this->car->carPic6)); ?>' === "") {
+                //Set the image source as the "not uploaded" image
+                carPic6.setAttribute("src", "<?php echo $this->baseUrl()?>/images/pictureNotUploaded.bmp");
+            //Otherwise 
+            } else {
+                var carPic6 = carPicSlides.appendChild(document.createElement("img"));
+                carPic6.setAttribute("src", "<?php echo $this->baseUrl()?>/images/<?php echo ($this->escape($this->car->carPic6)); ?>.jpg");
+                //Define the alternative text of the main image as "no picture"
+                carPic6.setAttribute("alt", "No Picture");
+                //Define the ID for CSS responsive design
+                carPic6.setAttribute("id", "carPicSlide");
+                //Assign an onclick function for whenever the sixth image on the slide is clicked
+                carPic6.onclick = function () {
+                    //Change the value of the main image to the same as the sixth image in slide
+                    carPic1.setAttribute("src", "<?php echo $this->baseUrl()?>/images/<?php echo ($this->escape($this->car->carPic6)); ?>.jpg");
+                };
+            }
+            //If the value for the seventh image is empty
+            if ('<?php echo ($this->escape($this->car->carPic7)); ?>' === "") {
+                //Set the image source as the "not uploaded" image
+                carPic7.setAttribute("src", "<?php echo $this->baseUrl()?>/images/pictureNotUploaded.bmp");
+            //Otherwise 
+            } else {
+                var carPic7 = carPicSlides.appendChild(document.createElement("img"));
+                carPic7.setAttribute("src", "<?php echo $this->baseUrl()?>/images/<?php echo ($this->escape($this->car->carPic7)); ?>.jpg");
+                //Define the alternative text of the main image as "no picture"
+                carPic7.setAttribute("alt", "No Picture");
+                //Define the ID for CSS responsive design
+                carPic7.setAttribute("id", "carPicSlide");
+                //Assign an onclick function for whenever the seventh image on the slide is clicked
+                carPic7.onclick = function () {
+                    //Change the value of the main image to the same as the seventh image in slide
+                    carPic1.setAttribute("src", "<?php echo $this->baseUrl()?>/images/<?php echo ($this->escape($this->car->carPic7)); ?>.jpg");
+                };
+            }
+            //If the value for the eigth image is empty
+            if ('<?php echo ($this->escape($this->car->carPic8)); ?>' === "") {
+                //Set the image source as the "not uploaded" image
+                carPic8.setAttribute("src", "<?php echo $this->baseUrl()?>/images/pictureNotUploaded.bmp");
+            //Otherwise 
+            } else {
+                var carPic8 = carPicSlides.appendChild(document.createElement("img"));
+                carPic8.setAttribute("src", "<?php echo $this->baseUrl()?>/images/<?php echo ($this->escape($this->car->carPic8)); ?>.jpg");
+                //Define the alternative text of the main image as "no picture"
+                carPic8.setAttribute("alt", "No Picture");
+                //Define the ID for CSS responsive design
+                carPic8.setAttribute("id", "carPicSlide");
+                //Assign an onclick function for whenever the eighth image on the slide is clicked
+                carPic8.onclick = function () {
+                    //Change the value of the main image to the same as the eighth image in slide
+                    carPic1.setAttribute("src", "<?php echo $this->baseUrl()?>/images/<?php echo ($this->escape($this->car->carPic8)); ?>.jpg");
+                };
+            }
+            //If the value for the ninth image is empty
+            if ('<?php echo ($this->escape($this->car->carPic9)); ?>' === "") {
+                //Set the image source as the "not uploaded" image
+                carPic9.setAttribute("src", "<?php echo $this->baseUrl()?>/images/pictureNotUploaded.bmp");
+            //Otherwise 
+            } else {
+                var carPic9 = carPicSlides.appendChild(document.createElement("img"));
+                carPic9.setAttribute("src", "<?php echo $this->baseUrl()?>/images/<?php echo ($this->escape($this->car->carPic9)); ?>.jpg");
+                //Define the alternative text of the main image as "no picture"
+                carPic9.setAttribute("alt", "No Picture");
+                //Define the ID for CSS responsive design
+                carPic9.setAttribute("id", "carPicSlide");
+                //Assign an onclick function for whenever the ninth image on the slide is clicked
+                carPic9.onclick = function () {
+                    //Change the value of the main image to the same as the ninth image in slide
+                    carPic1.setAttribute("src", "<?php echo $this->baseUrl()?>/images/<?php echo ($this->escape($this->car->carPic9)); ?>.jpg");
+                };
+            };
+        };
+    </script>
+</head>
+<body>
+     <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-10">
+                <div id="container">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-sm-3"><h1 style="text-align:center;"><u><?php echo ($this->escape($this->car->make)); ?></u></h1></div>
+                            <div class="col-sm-6"><h3><?php echo ($this->escape($this->car->model)); ?> | <?php echo ($this->escape($this->car->modelYear)); ?></h3></div>
+                            <div class="col-sm-3"><h1 style="color:#FF0000; text-align:center;"><strong><u>&pound;<?php echo ($this->escape($this->car->price)); ?></u></strong></h1></div>
+                        </div>
+                        <br/>
+                        <div class="row">
+                            <div class="col-sm-7">
+                                <p id="mainCarPicture">Loading main picture</p>
+                            </div>
+                            <div class="col-sm-5">
+                                <form>
+                                    <input id="carPageButton" type="button" value="Print This Page" onclick="window.print()" style="color:white; background-color:#FF0000; font-weight:bold; -moz-border-radius:8px; -webkit-border-radius: 8px; border-radius:8px; border-color:#FFA500;"/>
+                                </form>
+                                <br/> 
+                                <form>
+                                    <input id="carPageButton" type="button" value="Return Car Listing" onclick="window.location.href = '<?php
+                                        echo $this->url(array(
+                                            'controller' => 'car-page',
+                                                'action' => 'index'
+                                         ), null, true);
+                                    ?>'" style="color:white; background-color:#FF0000; font-weight:bold; -moz-border-radius:8px; -webkit-border-radius: 8px; border-radius:8px; border-color:#FFA500;"/>
+                                </form>
+                                <br/>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="carPictureSlides" style="text-align:center;">Loading slides</div>
+                    <br/>
+                    <br/>
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <strong>Model Year - </strong><?php echo ($this->escape($this->car->modelYear)); ?>
+                                <br/>
+                                <strong>Body Type - </strong><?php echo ($this->escape($this->car->bodyType)); ?>
+                                <br/>
+                                <strong>Mileage - </strong><?php echo ($this->escape($this->car->mileage)); ?> miles
+                                <br/>
+                                <strong>Transmission - </strong><?php echo ($this->escape($this->car->transmission)); ?>
+                                <br/>
+                                <strong>Brochure Size - </strong><?php echo ($this->escape($this->car->brochureSize)); ?>l
+                                <br/>
+                                <strong>Fuel Type - </strong><?php echo ($this->escape($this->car->fuelType)); ?>
+                                <br/>
+                                <br/>
+                            </div>
+                            <div class="col-sm-4">
+                                <strong>Engine Power - </strong><?php echo ($this->escape($this->car->enginePowerBHP)); ?> bhp
+                                <br/>  
+                                <strong>Engine Size - </strong><?php echo ($this->escape($this->car->engineSize)); ?> cc
+                                <br/>
+                                <strong>Acceleration (0 to 60) - </strong><?php echo ($this->escape($this->car->noughtToSixty)); ?>
+                                <br/>
+                                <strong>Top Speed - </strong><?php echo ($this->escape($this->car->topSpeed)); ?> mph
+                                <br/>
+                                <strong>Drivetrain - </strong><?php echo ($this->escape($this->car->drivetrain)); ?>
+                                <br/>
+                                <br/>
+                            </div>
+
+                            <div class="col-sm-4">
+                                <strong>Urban - </strong><?php echo ($this->escape($this->car->economyUrban)); ?>mpg
+                                <br/>    
+                                <strong>Extra Urban - </strong><?php echo ($this->escape($this->car->economyExtraUrban)); ?> mpg
+                                <br/>
+                                <strong>Combined - </strong><?php echo ($this->escape($this->car->economyCombined)); ?> mpg
+                                <br/>
+                                <strong>Emissions - </strong><?php echo ($this->escape($this->car->noughtToSixty)); ?> g/km
+                                <br/>
+                                <strong>Annual Tax - </strong>£<?php echo ($this->escape($this->car->annualTax)); ?> 
+                                <br/>
+                                <br/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <strong>Number Of Doors - </strong><?php echo ($this->escape($this->car->noOfDoors)); ?>
+                                <br/>
+                                <strong>Number Of Seats - </strong><?php echo ($this->escape($this->car->noOfSeats)); ?>
+                                <br/>
+                                <br/>
+                            </div>
+
+                        </div>
+                    </div>
+                    <p id="carPageDetails"></p>
+                    <br/>
+                    <p><?php echo ($this->escape($this->car->details)); ?></p>
+                    <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+
+                </div>
+            </div>
+            <div class="col-sm-1"></div>
+        </div>
+    </div>
+</body>

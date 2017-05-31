@@ -1,0 +1,941 @@
+<head>
+    <script>
+        //Create the function for when the page loads
+        window.onload = function () {
+            //Create a variable by getting the php div whose id is "carFormDisplay" from the body
+            var carForm = document.getElementById("carFormDisplay");
+            //Set form method to post
+            carForm.setAttribute("method", "post");
+            //Set encryption type to multipart form data
+            carForm.setAttribute("enctype", "multipart/form-data");
+            //Create a variable by getting the php div whose id is "carFormDisplay" from the body
+            var messDiv = document.getElementById("messDiv");
+            //Clear the car form div of all children
+            carForm.removeChild(carForm.childNodes[0]);
+            //Clear the message div of all children
+            messDiv.removeChild(messDiv.childNodes[0]);
+
+            //Create bold text for the first header and append to the form
+            var headText1 = carForm.appendChild(document.createElement('b'));
+            //Have the bold text display the following
+            headText1.appendChild(document.createTextNode("Your Details"));
+            //Change the font size of the header text
+            headText1.setAttribute("style", "font-size:1.5em");
+            //Line Break
+            carForm.appendChild(document.createElement("br"));
+            //Line Break
+            carForm.appendChild(document.createElement("br"));
+            //Create a parent node for the following text
+            var text1 = carForm.appendChild(document.createElement('span'));
+            //Append the text to the parent node
+            text1.appendChild(document.createTextNode('Name (*)'));
+            //Edit the font size of the text
+            text1.setAttribute("style", "font-size:16px;");
+
+            //Line Break
+            carForm.appendChild(document.createElement("br"));
+
+            //Assign an input object to the form object
+            var senderName = carForm.appendChild(document.createElement("input"));
+            //Assign a type value to the input object, making it a text box
+            senderName.setAttribute("type", "text");
+            //Assign a name value to the text box
+            senderName.setAttribute("name", "senderName");
+            //Assign an ID value for CSS
+            senderName.setAttribute("id", "wbcTextBox");
+            //Set maximum input length to 50 characters
+            senderName.setAttribute("maxlength", "50");
+            //Assign a width value to the text box
+            senderName.setAttribute("style", "font-size: 18px; height: 30px; border: 1px solid black; -moz-border-radius:8px; -webkit-border-radius: 8px; border-radius:8px;");
+            //Line Break
+            carForm.appendChild(document.createElement("br"));
+            //Line Break
+            carForm.appendChild(document.createElement("br"));
+            //Create a parent node for the following text
+            var text2 = carForm.appendChild(document.createElement('span'));
+            //Append the text to the parent node
+            text2.appendChild(document.createTextNode('Telephone Number (*)'));
+            //Edit the font size of the text
+            text2.setAttribute("style", "font-size:16px;");
+
+            //As soon as you press a key while the senderName text box is selected
+            senderName.onkeydown = function (e) {
+                //Ensure that the ; [ ] and ' keys are disabled to prevent hacking
+                return e.which !== 186 && e.which !== 219 && e.which !== 221 && e.which !== 192;
+            };
+
+            //As soon as a key is pressed while the senderName text box is selected
+            senderName.onkeypress = function (e) {
+                //Ensure the " alternate of the 2 key is disabled, as well as the ( and ) alternates of the 9 and 0 keys
+                return e.which !== 34 && e.which !== 40 && e.which !== 41;
+            };
+
+            //Line Break
+            carForm.appendChild(document.createElement("br"));
+            //Append a new input object for the first phone number to the form
+            var senderPhone = carForm.appendChild(document.createElement("input"));
+            //Set maximum input length to 50 characters
+            senderPhone.setAttribute("maxlength", "13");
+            //Assign a type value to the input object, making it a text box
+            senderPhone.setAttribute("type", "senderPhone");
+            //Assign an ID value for CSS
+            senderPhone.setAttribute("id", "wbcTextBox");
+            //Assign a name value to the text box
+            senderPhone.setAttribute("name", "senderPhone");
+            //Assign a width value to the text box
+            senderPhone.setAttribute("style", "font-size: 18px; height: 30px; border: 1px solid black; -moz-border-radius:8px; -webkit-border-radius: 8px; border-radius:8px;");
+            //Line Break
+            carForm.appendChild(document.createElement("br"));
+
+            //As soon as you press a key while the senderPhone text box is selected
+            senderPhone.onkeydown = function (e) {
+                //Ensure that only number keys, the left and right directionals, the delete and backspace buttons are inputted
+                return (e.which >= 48 && e.which <= 57) || e.which === 37 || e.which === 39 || e.which === 8 || e.which === 46;
+            };
+
+            //As soon as a key is held down while the senderPhone text box is selected
+            senderPhone.onkeypress = function (e) {
+                //Ensure the alternates of all number keys are disabled
+                return e.which !== 33 && e.which !== 34 && e.which !== 163 && e.which !== 36 && e.which !== 37 && e.which !== 94 && e.which !== 38 && e.which !== 42 && e.which !== 40 && e.which !== 41;
+            };
+
+            //Line Break
+            carForm.appendChild(document.createElement("br"));
+            //Line Break
+            carForm.appendChild(document.createElement("br"));
+
+            //Create a parent node for the following text
+            var text4 = carForm.appendChild(document.createElement('span'));
+            //Append the text to the parent node
+            text4.appendChild(document.createTextNode('Email Address (*)'));
+            //Edit the font size of the text
+            text4.setAttribute("style", "font-size:16px;");
+
+            //Line Break
+            carForm.appendChild(document.createElement("br"));
+            //Create an input object for the first email address and append to form
+            var senderEmail = carForm.appendChild(document.createElement("input"));
+            //Set the maximum length of the input object to 100 characters
+            senderEmail.setAttribute("maxlength", "100");
+            //Assign a type value to the input object, making it a text box
+            senderEmail.setAttribute("type", "text");
+            //Assign a name value to the text box
+            senderEmail.setAttribute("name", "senderEmail");
+            //Assign an id value to the text box for CSS
+            senderEmail.setAttribute("id", "wbcTextBox");
+            //Assign a width value to the text box
+            senderEmail.setAttribute("style", "font-size: 18px; height: 30px; border: 1px solid black; -moz-border-radius:8px; -webkit-border-radius: 8px; border-radius:8px;");
+            //Line Break
+            carForm.appendChild(document.createElement("br"));
+
+            //As soon as you press a key while the senderEmail text box is selected
+            senderEmail.onkeydown = function (e) {
+                //If the space button is pressed, disable it
+                return e.which !== 32;
+            };
+
+            //Create a boolean value for determining if both email values are valid/matching
+            var isEmailValid = new Boolean();
+
+            //Attach an onchange listener to the first senderEmail input box
+            senderEmail.onchange = function () {
+                //Change the background colour of the first email input box to white
+                senderEmail.style.backgroundColor = "white";
+                //Write a filter variable for determining if email addresses are valid
+                var filter = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+
+                //If the content of the first email input box is empty
+                if (senderEmail.value === "") {
+                    //Change isEmailValid boolean to false
+                    isEmailValid = false;
+                    //Otherwise
+                } else {
+                    //If the value of the first senderEmail input box is not a valid email address
+                    if (!filter.test(senderEmail.value)) {
+                        //Change the background colour of the first email input box to red
+                        senderEmail.style.backgroundColor = "red";
+                        senderEmail.focus;
+                        //Set the email boolean value to false
+                        isEmailValid = false;
+                        //If the value of the first email input box is confirmed a valid email address
+                    } else {
+                        //Change the background colour of the first email input box to white
+                        senderEmail.style.backgroundColor = "white";
+                        //Set isEmailValid value to true
+                        isEmailValid = true;
+                    }
+                }
+            };
+            //Line Break
+            carForm.appendChild(document.createElement("br"));
+            //Create a bold header text object and append to fornm
+            var headText2 = carForm.appendChild(document.createElement('b'));
+            //Have the bold text display the following
+            headText2.appendChild(document.createTextNode("Vehicle Details"));
+            //Edit the font size of the text
+            headText2.setAttribute("style", "font-size:1.5em;");
+
+            //Line Break
+            carForm.appendChild(document.createElement("br"));
+            //Line Break
+            carForm.appendChild(document.createElement("br"));
+            //Create a parent node for the following text
+            var text5 = carForm.appendChild(document.createElement('span'));
+            //Append the text to the parent node
+            text5.appendChild(document.createTextNode('Make (*)'));
+            //Edit the font size of the text
+            text5.setAttribute("style", "font-size:16px;");
+            //Line Break
+            carForm.appendChild(document.createElement("br"));
+
+            //Assign an input (select) object to the form object
+            var carMake = carForm.appendChild(document.createElement("select"));
+            //Set the name of the select node as "make"
+            carMake.setAttribute("name", "make");
+            //Set the id of the select node as "make"
+            carMake.setAttribute("id", "make");
+            //Change the style of the drop-down node
+            carMake.setAttribute("style", "font-size: 18px; height: 30px; border: 1px solid black; -moz-border-radius:8px; -webkit-border-radius: 8px; border-radius:8px;");
+            //Append an option object to the input(select) object
+            var option1 = carMake.appendChild(document.createElement("option"));
+            //set the "value" value of the option object 
+            option1.setAttribute("value", "Please Select");
+            //Create a text node for the option, containing the clickable text
+            option1.appendChild(document.createTextNode("Please Select"));
+            //Append an option object to the input(select) object
+            var option2 = carMake.appendChild(document.createElement("option"));
+            //set the "value" value of the option object
+            option2.setAttribute("value", "AC");
+            //Create a text node for the option, containing the clickable text
+            option2.appendChild(document.createTextNode("AC"));
+            //Append an option object to the input(select) object
+            var option3 = carMake.appendChild(document.createElement("option"));
+            //set the "value" value of the option object 
+            option3.setAttribute("value", "Alfa Romeo");
+            //Create a text node for the option, containing the clickable text
+            option3.appendChild(document.createTextNode("Alpha Romeo"));
+            //Append an option object to the input(select) object
+            var option4 = carMake.appendChild(document.createElement("option"));
+            //set the "value" value of the option object 
+            option4.setAttribute("value", "Aston Martin");
+            //Create a text node for the option, containing the clickable text
+            option4.appendChild(document.createTextNode("Aston Martin"));
+            //Append an option object to the input(select) object
+            var option5 = carMake.appendChild(document.createElement("option"));
+            //set the "value" value of the option object
+            option5.setAttribute("value", "Audi");
+            //Create a text node for the option, containing the clickable text
+            option5.appendChild(document.createTextNode("Audi"));
+            //Append an option object to the input(select) object
+            var option6 = carMake.appendChild(document.createElement("option"));
+            //set the "value" value of the option object
+            option6.setAttribute("value", "Bentley");
+            //Create a text node for the option, containing the clickable text
+            option6.appendChild(document.createTextNode("Bentley"));
+            //Append an option object to the input(select) object
+            var option7 = carMake.appendChild(document.createElement("option"));
+            //set the "value" value of the option object 
+            option7.setAttribute("value", "BMW");
+            //Create a text node for the option, containing the clickable text
+            option7.appendChild(document.createTextNode("BMW"));
+            //Append an option object to the input(select) object
+            var option8 = carMake.appendChild(document.createElement("option"));
+            //set the "value" value of the option object 
+            option8.setAttribute("value", "Caterham");
+            //Create a text node for the option, containing the clickable text
+            option8.appendChild(document.createTextNode("Caterham"));
+            //Append an option object to the input(select) object
+            var option9 = carMake.appendChild(document.createElement("option"));
+            //set the "value" value of the option object
+            option9.setAttribute("value", "Chrysler Jeep");
+            //Create a text node for the option, containing the clickable text
+            option9.appendChild(document.createTextNode("Chrysler Jeep"));
+            //Append an option object to the input(select) object
+            var option10 = carMake.appendChild(document.createElement("option"));
+            //set the "value" value of the option object
+            option10.setAttribute("value", "Citroen");
+            //Create a text node for the option, containing the clickable text
+            option10.appendChild(document.createTextNode("Citroen"));
+            //Append an option object to the input(select) object
+            var option11 = carMake.appendChild(document.createElement("option"));
+            //set the "value" value of the option object 
+            option11.setAttribute("value", "Daewoo");
+            //Create a text node for the option, containing the clickable text
+            option11.appendChild(document.createTextNode("Daewoo"));
+            //Append an option object to the input(select) object
+            var option12 = carMake.appendChild(document.createElement("option"));
+            //set the "value" value of the option object
+            option12.setAttribute("value", "Daihatsu");
+            //Create a text node for the option, containing the clickable text
+            option12.appendChild(document.createTextNode("Daihatsu"));
+            //Append an option object to the input(select) object
+            var option13 = carMake.appendChild(document.createElement("option"));
+            //set the "value" value of the option object
+            option13.setAttribute("value", "Ferrari");
+            //Create a text node for the option, containing the clickable text
+            option13.appendChild(document.createTextNode("Ferrari"));
+            //Append an option object to the input(select) object
+            var option14 = carMake.appendChild(document.createElement("option"));
+            //set the "value" value of the option object
+            option14.setAttribute("value", "Fiat");
+            //Create a text node for the option, containing the clickable text
+            option14.appendChild(document.createTextNode("Fiat"));
+            //Append an option object to the input(select) object
+            var option15 = carMake.appendChild(document.createElement("option"));
+            //set the "value" value of the option object
+            option15.setAttribute("value", "Ford");
+            //Create a text node for the option, containing the clickable text
+            option15.appendChild(document.createTextNode("Ford"));
+            //Append an option object to the input(select) object
+            var option16 = carMake.appendChild(document.createElement("option"));
+            //set the "value" value of the option object
+            option16.setAttribute("value", "Honda");
+            //Create a text node for the option, containing the clickable text
+            option16.appendChild(document.createTextNode("Honda"));
+            //Append an option object to the input(select) object
+            var option17 = carMake.appendChild(document.createElement("option"));
+            //set the "value" value of the option object
+            option17.setAttribute("value", "Hyundai");
+            //Create a text node for the option, containing the clickable text
+            option17.appendChild(document.createTextNode("Hyundai"));
+            var option18 = carMake.appendChild(document.createElement("option"));
+            //set the "value" value of the option object
+            option18.setAttribute("value", "Isuzu");
+            //Create a text node for the option, containing the clickable text
+            option18.appendChild(document.createTextNode("Isuzu"));
+            //Append an option object to the input(select) object
+            var option19 = carMake.appendChild(document.createElement("option"));
+            //set the "value" value of the option object
+            option19.setAttribute("value", "Jaguar");
+            //Create a text node for the option, containing the clickable text
+            option19.appendChild(document.createTextNode("Jaguar"));
+            //Append an option object to the input(select) object
+            var option20 = carMake.appendChild(document.createElement("option"));
+            //set the "value" value of the option object
+            option20.setAttribute("value", "Jeep");
+            //Create a text node for the option, containing the clickable text
+            option20.appendChild(document.createTextNode("Jeep"));
+            //Append an option object to the input(select) object
+            var option21 = carMake.appendChild(document.createElement("option"));
+            //set the "value" value of the option object
+            option21.setAttribute("value", "Kia");
+            //Create a text node for the option, containing the clickable text
+            option21.appendChild(document.createTextNode("Kia"));
+            //Append an option object to the input(select) object
+            var option22 = carMake.appendChild(document.createElement("option"));
+            //set the "value" value of the option object
+            option22.setAttribute("value", "Lamborghini");
+            //Create a text node for the option, containing the clickable text
+            option22.appendChild(document.createTextNode("Lamborghini"));
+            //Append an option object to the input(select) object
+            var option23 = carMake.appendChild(document.createElement("option"));
+            //set the "value" value of the option object
+            option23.setAttribute("value", "Land Rover");
+            //Create a text node for the option, containing the clickable text
+            option23.appendChild(document.createTextNode("Land Rover"));
+            //Append an option object to the input(select) object
+            var option24 = carMake.appendChild(document.createElement("option"));
+            //set the "value" value of the option object
+            option24.setAttribute("value", "Lexus");
+            //Create a text node for the option, containing the clickable text
+            option24.appendChild(document.createTextNode("Lexus"));
+            //Append an option object to the input(select) object
+            var option25 = carMake.appendChild(document.createElement("option"));
+            //set the "value" value of the option object
+            option25.setAttribute("value", "Maserati");
+            //Create a text node for the option, containing the clickable text
+            option25.appendChild(document.createTextNode("Maserati"));
+            //Append an option object to the input(select) object
+            var option26 = carMake.appendChild(document.createElement("option"));
+            //set the "value" value of the option object
+            option26.setAttribute("value", "Mazda");
+            //Create a text node for the option, containing the clickable text
+            option26.appendChild(document.createTextNode("Mazda"));
+            //Append an option object to the input(select) object
+            var option27 = carMake.appendChild(document.createElement("option"));
+            //set the "value" value of the option object
+            option27.setAttribute("value", "Mercedes-Benz");
+            //Create a text node for the option, containing the clickable text
+            option27.appendChild(document.createTextNode("Mercedes-Benz"));
+            //Append an option object to the input(select) object
+            var option28 = carMake.appendChild(document.createElement("option"));
+            //set the "value" value of the option object
+            option28.setAttribute("value", "MG");
+            //Create a text node for the option, containing the clickable text
+            option28.appendChild(document.createTextNode("MG"));
+            //Append an option object to the input(select) object
+            var option29 = carMake.appendChild(document.createElement("option"));
+            //set the "value" value of the option object
+            option29.setAttribute("value", "Mitsubishi");
+            //Create a text node for the option, containing the clickable text
+            option29.appendChild(document.createTextNode("Mitsubishi"));
+            //Append an option object to the input(select) object
+            var option30 = carMake.appendChild(document.createElement("option"));
+            //set the "value" value of the option object
+            option30.setAttribute("value", "Morgan");
+            //Create a text node for the option, containing the clickable text
+            option30.appendChild(document.createTextNode("Morgan"));
+            //Append an option object to the input(select) object
+            var option31 = carMake.appendChild(document.createElement("option"));
+            //set the "value" value of the option object
+            option31.setAttribute("value", "Nissan");
+            //Create a text node for the option, containing the clickable text
+            option31.appendChild(document.createTextNode("Nissan"));
+            //Append an option object to the input(select) object
+            var option32 = carMake.appendChild(document.createElement("option"));
+            //set the "value" value of the option object
+            option32.setAttribute("value", "Perodua");
+            //Create a text node for the option, containing the clickable text
+            option32.appendChild(document.createTextNode("Perodua"));
+            //Append an option object to the input(select) object
+            var option33 = carMake.appendChild(document.createElement("option"));
+            //set the "value" value of the option object
+            option33.setAttribute("value", "Peugeot");
+            //Create a text node for the option, containing the clickable text
+            option33.appendChild(document.createTextNode("Peugeot"));
+            //Append an option object to the input(select) object
+            var option34 = carMake.appendChild(document.createElement("option"));
+            //set the "value" value of the option object
+            option34.setAttribute("value", "Porsche");
+            //Create a text node for the option, containing the clickable text
+            option34.appendChild(document.createTextNode("Porsche"));
+            //Append an option object to the input(select) object
+            var option35 = carMake.appendChild(document.createElement("option"));
+            //set the "value" value of the option object
+            option35.setAttribute("value", "Proton");
+            //Create a text node for the option, containing the clickable text
+            option35.appendChild(document.createTextNode("Proton"));
+            //Append an option object to the input(select) object
+            var option36 = carMake.appendChild(document.createElement("option"));
+            //set the "value" value of the option object
+            option36.setAttribute("value", "Renault");
+            //Create a text node for the option, containing the clickable text
+            option36.appendChild(document.createTextNode("Renault"));
+            //Append an option object to the input(select) object
+            var option37 = carMake.appendChild(document.createElement("option"));
+            //set the "value" value of the option object
+            option37.setAttribute("value", "Rolls-Royce");
+            //Create a text node for the option, containing the clickable text
+            option37.appendChild(document.createTextNode("Rolls-Royce"));
+            //Append an option object to the input(select) object
+            var option38 = carMake.appendChild(document.createElement("option"));
+            //set the "value" value of the option object
+            option38.setAttribute("value", "Rover");
+            //Create a text node for the option, containing the clickable text
+            option38.appendChild(document.createTextNode("Rover"));
+            //Append an option object to the input(select) object
+            var option39 = carMake.appendChild(document.createElement("option"));
+            //set the "value" value of the option object
+            option39.setAttribute("value", "Saab");
+            //Create a text node for the option, containing the clickable text
+            option39.appendChild(document.createTextNode("Saab"));
+            //Append an option object to the input(select) object
+            var option40 = carMake.appendChild(document.createElement("option"));
+            //set the "value" value of the option object
+            option40.setAttribute("value", "SEAT");
+            //Create a text node for the option, containing the clickable text
+            option40.appendChild(document.createTextNode("SEAT"));
+            //Append an option object to the input(select) object
+            var option40 = carMake.appendChild(document.createElement("option"));
+            //set the "value" value of the option object
+            option40.setAttribute("value", "Skoda");
+            //Create a text node for the option, containing the clickable text
+            option40.appendChild(document.createTextNode("Skoda"));
+            //Append an option object to the input(select) object
+            var option41 = carMake.appendChild(document.createElement("option"));
+            //set the "value" value of the option object
+            option41.setAttribute("value", "Smart");
+            //Create a text node for the option, containing the clickable text
+            option41.appendChild(document.createTextNode("Smart"));
+            //Append an option object to the input(select) object
+            var option42 = carMake.appendChild(document.createElement("option"));
+            //set the "value" value of the option object
+            option42.setAttribute("value", "Subaru");
+            //Create a text node for the option, containing the clickable text
+            option42.appendChild(document.createTextNode("Subaru"));
+            //Append an option object to the input(select) object
+            var option43 = carMake.appendChild(document.createElement("option"));
+            //set the "value" value of the option object
+            option43.setAttribute("value", "Suzuki");
+            //Create a text node for the option, containing the clickable text
+            option43.appendChild(document.createTextNode("Suzuki"));
+            //Append an option object to the input(select) object
+            var option44 = carMake.appendChild(document.createElement("option"));
+            //set the "value" value of the option object
+            option44.setAttribute("value", "Toyota");
+            //Create a text node for the option, containing the clickable text
+            option44.appendChild(document.createTextNode("Toyota"));
+            //Append an option object to the input(select) object
+            var option45 = carMake.appendChild(document.createElement("option"));
+            //set the "value" value of the option object
+            option45.setAttribute("value", "TVR");
+            //Create a text node for the option, containing the clickable text
+            option45.appendChild(document.createTextNode("TVR"));
+            //Append an option object to the input(select) object
+            var option46 = carMake.appendChild(document.createElement("option"));
+            //set the "value" value of the option object
+            option46.setAttribute("value", "Vauxhall");
+            //Create a text node for the option, containing the clickable text
+            option46.appendChild(document.createTextNode("Vauxhall"));
+            //Append an option object to the input(select) object
+            var option47 = carMake.appendChild(document.createElement("option"));
+            //set the "value" value of the option object
+            option47.setAttribute("value", "Volvo");
+            //Create a text node for the option, containing the clickable text
+            option47.appendChild(document.createTextNode("Volvo"));
+            //Append an option object to the input(select) object
+            var option48 = carMake.appendChild(document.createElement("option"));
+            //set the "value" value of the option object
+            option48.setAttribute("value", "Volkswagen");
+            //Create a text node for the option, containing the clickable text
+            option48.appendChild(document.createTextNode("Volkswagen"));
+            //Append an option object to the input(select) object
+            var option49 = carMake.appendChild(document.createElement("option"));
+            //set the "value" value of the option object
+            option49.setAttribute("value", "OTHER");
+            //Create a text node for the option, containing the clickable text
+            option49.appendChild(document.createTextNode("OTHER"));
+
+            //Line Break
+            carForm.appendChild(document.createElement("br"));
+            //Line Break
+            carForm.appendChild(document.createElement("br"));
+            //Create a parent node for the following text
+            var text6 = carForm.appendChild(document.createElement('span'));
+            //Append the text to the parent node
+            text6.appendChild(document.createTextNode('Model (*)'));
+            //Edit the font size of the text
+            text6.setAttribute("style", "font-size:16px;");
+            //Line Break
+            carForm.appendChild(document.createElement("br"));
+            //Create an input object for the car model
+            var carModel = carForm.appendChild(document.createElement("input"));
+            //Assign a type value to the input object, making it a text box
+            carModel.setAttribute("type", "text");
+            //Assign a name value to the text box
+            carModel.setAttribute("name", "model");
+            //Assign an id value to the text box for CSS
+            carModel.setAttribute("id", "wbcTextBox");
+            //Set the maximum character limit of the input object to 50 characters
+            carModel.setAttribute("maxlength", "50");
+            //Assign a width value to the text box
+            carModel.setAttribute("style", "font-size: 18px; height: 30px; border: 1px solid black; -moz-border-radius:8px; -webkit-border-radius: 8px; border-radius:8px;");
+
+            //As soon as you press a key while the carModel text box is selected
+            carModel.onkeydown = function (e) {
+                //Ensure that the ; [ ] and ' keys are disabled to prevent hacking
+                return e.which !== 186 && e.which !== 219 && e.which !== 221 && e.which !== 192;
+            };
+
+            //As soon as a key is pressed while the carModel text box is selected
+            carModel.onkeypress = function (e) {
+                //Ensure the " alternate of the 2 key is disabled, as well as the ( and ) alternates of the 9 and 0 keys
+                return e.which !== 34 && e.which !== 40 && e.which !== 41;
+            };
+
+            //Line Break
+            carForm.appendChild(document.createElement("br"));
+            //Line Break            
+            carForm.appendChild(document.createElement("br"));
+            //Create a parent node for the following text
+            var text7 = carForm.appendChild(document.createElement('span'));
+            //Append the text to the parent node
+            text7.appendChild(document.createTextNode('Registration Number (*)'));
+            //Edit the font size of the text
+            text7.setAttribute("style", "font-size:16px;");
+            //Line Break
+            carForm.appendChild(document.createElement("br"));
+            //Create an input object for the car's registration
+            var carReg = carForm.appendChild(document.createElement("input"));
+            //Assign a type value to the input object, making it a text box
+            carReg.setAttribute("type", "text");
+            //Assign a name value to the text box
+            carReg.setAttribute("name", "carReg");
+            //Assign an id value to the text box for CSS
+            carReg.setAttribute("id", "wbcTextBox");
+            //Set the maximum character limit to 20
+            carReg.setAttribute("maxlength", "20");
+            //Assign a width value to the text box
+            carReg.setAttribute("style", "font-size: 18px; height: 30px; border: 1px solid black; -moz-border-radius:8px; -webkit-border-radius: 8px; border-radius:8px;");
+
+            //As soon as you press a key while the carReg text box is selected
+            carReg.onkeydown = function (e) {
+                //Ensure that the ; [ ] and ' keys are disabled to prevent hacking
+                return e.which !== 186 && e.which !== 219 && e.which !== 221 && e.which !== 192;
+            };
+
+            //As soon as a key is pressed while the carReg text box is selected
+            carReg.onkeypress = function (e) {
+                //Ensure the " alternate of the 2 key is disabled, as well as the ( and ) alternates of the 9 and 0 keys
+                return e.which !== 34 && e.which !== 40 && e.which !== 41;
+            };
+
+            //Line Break
+            carForm.appendChild(document.createElement("br"));
+            //Line Break
+            carForm.appendChild(document.createElement("br"));
+
+            //Create a parent node for the following text
+            var text8 = carForm.appendChild(document.createElement('span'));
+            //Append the text to the parent node
+            text8.appendChild(document.createTextNode('Mileage (*)'));
+            //Edit the font size of the text
+            text8.setAttribute("style", "font-size:16px;");
+
+            //Line Break
+            carForm.appendChild(document.createElement("br"));
+            //Create an input object for the car mileage
+            var carMileage = carForm.appendChild(document.createElement("input"));
+            //Assign a type value to the input object, making it a text box
+            carMileage.setAttribute("type", "text");
+            //Assign a name value to the text box
+            carMileage.setAttribute("name", "mileage");
+            //Assign an id value to the text box for CSS
+            carMileage.setAttribute("id", "wbcTextBox");
+            //Set maximum character limit to 7
+            carMileage.setAttribute("maxlength", "7");
+            //Assign a width value to the text box
+            carMileage.setAttribute("style", "font-size: 18px; height: 30px; border: 1px solid black; -moz-border-radius:8px; -webkit-border-radius: 8px; border-radius:8px;");
+
+            //As soon as you press a key while the carMileage text box is selected
+            carMileage.onkeydown = function (e) {
+                //Ensure that only number keys, the left and right directionals, the delete and backspace buttons are inputted
+                return (e.which >= 48 && e.which <= 57) || e.which === 37 || e.which === 39 || e.which === 8 || e.which === 46;
+            };
+
+            //As soon as a key is held down while the carMileage text box is selected
+            carMileage.onkeypress = function (e) {
+                //Ensure the alternates of all number keys are disabled
+                return e.which !== 33 && e.which !== 34 && e.which !== 163 && e.which !== 36 && e.which !== 37 && e.which !== 94 && e.which !== 38 && e.which !== 42 && e.which !== 40 && e.which !== 41;
+            };
+            //Line Break
+            carForm.appendChild(document.createElement("br"));
+            //Line Break
+            carForm.appendChild(document.createElement("br"));
+            //Create a parent node for the following text
+            var text9 = carForm.appendChild(document.createElement('span'));
+            //Append the text to the parent node
+            text9.appendChild(document.createTextNode('Fuel Type'));
+            //Edit the font size of the text
+            text9.setAttribute("style", "font-size:16px;");
+            //Line Break
+            carForm.appendChild(document.createElement("br"));
+            //Assign an input(select) object for the car's fuel type to the form
+            var carFuelType = carForm.appendChild(document.createElement("select"));
+            //Set the name of the select node as "make"
+            carFuelType.setAttribute("name", "fuelType");
+            //Set the id of the select node as "make"
+            carFuelType.setAttribute("id", "fuelType");
+            //Change the style of the drop-down node
+            carFuelType.setAttribute("style", "font-size: 18px; height: 30px; border: 1px solid black; -moz-border-radius:8px; -webkit-border-radius: 8px; border-radius:8px;");
+            //Append an option object to the input(select) object
+            var cftOption1 = carFuelType.appendChild(document.createElement("option"));
+            //set the "value" value of the option object 
+            cftOption1.setAttribute("value", "Please Select");
+            //Create a text node for the option, containing the clickable text
+            cftOption1.appendChild(document.createTextNode("Please Select"));
+            //Append an option object to the input(select) object
+            var cftOption2 = carFuelType.appendChild(document.createElement("option"));
+            //set the "value" value of the option object 
+            cftOption2.setAttribute("value", "Petrol");
+            //Create a text node for the option, containing the clickable text
+            cftOption2.appendChild(document.createTextNode("Petrol"));
+            //Append an option object to the input(select) object
+            var cftOption3 = carFuelType.appendChild(document.createElement("option"));
+            //set the "value" value of the option object 
+            cftOption3.setAttribute("value", "Diesel");
+            //Create a text node for the option, containing the clickable text
+            cftOption3.appendChild(document.createTextNode("Diesel"));
+            //Append an option object to the input(select) object
+            var cftOption4 = carFuelType.appendChild(document.createElement("option"));
+            //set the "value" value of the option object 
+            cftOption4.setAttribute("value", "Other");
+            //Create a text node for the option, containing the clickable text
+            cftOption4.appendChild(document.createTextNode("Other"));
+            //Line Break
+            carForm.appendChild(document.createElement("br"));
+            //Line Break
+            carForm.appendChild(document.createElement("br"));
+
+            //Create a parent node for the following text
+            var text10 = carForm.appendChild(document.createElement('span'));
+            //Append the text to the parent node
+            text10.appendChild(document.createTextNode('Colour'));
+            //Edit the font size of the text
+            text10.setAttribute("style", "font-size:16px;");
+            //Line Break
+            carForm.appendChild(document.createElement("br"));
+            //Create a new input object for the car colour and append to form
+            var carColour = carForm.appendChild(document.createElement("input"));
+            //Assign a type value to the input object, making it a text box
+            carColour.setAttribute("type", "text");
+            //Assign a name value to the text box
+            carColour.setAttribute("name", "colour");
+            //Assign an id value to the text box for CSS
+            carColour.setAttribute("id", "wbcTextBox");
+            //Set maximum character length to 25
+            carColour.setAttribute("maxlength", "25");
+            //Assign a width value to the text box
+            carColour.setAttribute("style", "font-size: 18px; height: 30px; border: 1px solid black; -moz-border-radius:8px; -webkit-border-radius: 8px; border-radius:8px;");
+
+            //As soon as you press a key while the carCOlour text box is selected
+            carColour.onkeydown = function (e) {
+                //Ensure that the ; [ ] and ' keys are disabled to prevent hacking
+                return e.which !== 186 && e.which !== 219 && e.which !== 221 && e.which !== 192;
+            };
+
+            //As soon as a key is pressed while the carColour text box is selected
+            carColour.onkeypress = function (e) {
+                //Ensure the " alternate of the 2 key is disabled, as well as the ( and ) alternates of the 9 and 0 keys
+                return e.which !== 34 && e.which !== 40 && e.which !== 41;
+            };
+
+            //Line Break
+            carForm.appendChild(document.createElement("br"));
+            //Line Break
+            carForm.appendChild(document.createElement("br"));
+
+            //Create a parent node for the following text
+            var text11 = carForm.appendChild(document.createElement('span'));
+            //Append the text to the parent node
+            text11.appendChild(document.createTextNode('Transmission'));
+            //Edit the font size of the text
+            text11.setAttribute("style", "font-size:16px;");
+            //Line Break
+            carForm.appendChild(document.createElement("br"));
+            //Create an input/select object for the car transmission
+            var carTransmission = carForm.appendChild(document.createElement("select"));
+            //Set the name of the select node as "make"
+            carTransmission.setAttribute("name", "transmission");
+            //Set the id of the select node as "make"
+            carTransmission.setAttribute("id", "transmission");
+            //Change the style of the drop-down node
+            carTransmission.setAttribute("style", "font-size: 18px; height: 30px; border: 1px solid black; -moz-border-radius:8px; -webkit-border-radius: 8px; border-radius:8px;");
+            //Append an option object to the input(select) object
+            var transOption1 = carTransmission.appendChild(document.createElement("option"));
+            //set the "value" value of the option object 
+            transOption1.setAttribute("value", "Please Select");
+            //Apply text to the option
+            transOption1.appendChild(document.createTextNode("Please Select"));
+            //Append an option object to the input(select) object
+            var transOption2 = carTransmission.appendChild(document.createElement("option"));
+            //set the "value" value of the option object 
+            transOption2.setAttribute("value", "Manual");
+            //Apply text to the option
+            transOption2.appendChild(document.createTextNode("Manual"));
+            //Append an option object to the input(select) object
+            var transOption3 = carTransmission.appendChild(document.createElement("option"));
+            //set the "value" value of the option object 
+            transOption3.setAttribute("value", "Automatic");
+            //Apply text to the option
+            transOption3.appendChild(document.createTextNode("Automatic"));
+            //Append an option object to the input(select) object
+            var transOption4 = carTransmission.appendChild(document.createElement("option"));
+            //set the "value" value of the option object 
+            transOption4.setAttribute("value", "Other");
+            //Apply text to the option
+            transOption4.appendChild(document.createTextNode("Other"));
+            //Line Break
+            carForm.appendChild(document.createElement("br"));
+            //Line Break
+            carForm.appendChild(document.createElement("br"));
+
+            //Append a piece of bold header text to teh form
+            var headText3 = carForm.appendChild(document.createElement('b'));
+            //Have the bold text read out as the following text
+            headText3.appendChild(document.createTextNode("Additional Information"));
+            //Make the font size of the head text larger
+            headText3.setAttribute("style", "font-size:1.5em");
+            //Line Break
+            carForm.appendChild(document.createElement("br"));
+            //Line Break
+            carForm.appendChild(document.createElement("br"));
+            //Create a parent node for the following text
+            var text12 = carForm.appendChild(document.createElement('span'));
+            //Append the text to the parent node
+            text12.appendChild(document.createTextNode('Any Other Information (1000 characters only)'));
+            //Edit the font size of the text
+            text12.setAttribute("style", "font-size:16px;");
+            //Line Break
+            carForm.appendChild(document.createElement("br"));
+
+            //Create a new input object and assign it to the form object
+            var otherInfo = carForm.appendChild(document.createElement("textarea"));
+            //Assign a name value to the text box
+            otherInfo.setAttribute("name", "otherInfo");
+            //Assign an id value to the text box for CSS
+            otherInfo.setAttribute("id", "wbcTextBox");
+            //Set the maximum input limit of the other info textarea to 1000 characters
+            otherInfo.setAttribute("maxlength", "1000");
+            //Edit the style of the textarea node
+            otherInfo.setAttribute("style", "font-size: 18px; height:400px; border: 1px solid black; -moz-border-radius:8px; -webkit-border-radius: 8px; border-radius:8px;");
+
+            //As soon as you press a key while the otherInfo text box is selected
+            otherInfo.onkeydown = function (e) {
+                //Ensure the " alternate of the 2 key is disabled, as well as the ( and ) alternates of the 9 and 0 keys
+                return e.which !== 34 && e.which !== 40 && e.which !== 41;
+            };
+
+            //As soon as a key is pressed while the otherInfo text box is selected
+            otherInfo.onkeypress = function (e) {
+                //Ensure that the ; [ ] and ' keys are disabled to prevent hacking
+                return e.which !== 186 && e.which !== 219 && e.which !== 221 && e.which !== 192;
+            };
+
+            //Line Break
+            carForm.appendChild(document.createElement('br'));
+            //Line Break
+            carForm.appendChild(document.createElement("br"));
+
+            //Create an input object for determmining the type of message this is
+            var messageType = carForm.appendChild(document.createElement("input"));
+            //Assign a type value to the input object, making it hidden
+            messageType.setAttribute("type", "hidden");
+            //Assign a name value to the object
+            messageType.setAttribute("name", "messageType");
+            //Assign an id value to the object
+            messageType.setAttribute("id", "messageType");
+            //Assign an value value to the object
+            messageType.setAttribute("value", "carSale");
+            //Edit the style of the button node
+
+            //Set a hidden string variable, which will entail the contents of the form. Strings will be added to it below.        
+            var contents = carForm.appendChild(document.createElement("input"));
+            //Assign a type value to the input object, making it hidden
+            contents.setAttribute("type", "hidden");
+            //Assign a name value to the object
+            contents.setAttribute("name", "contents");
+            //Assign an id value to the object
+            contents.setAttribute("id", "contents");
+
+            //Create a button object and assign it to the form object
+            var submitButton = carForm.appendChild(document.createElement("BUTTON"));
+            //Write the text on the button
+            submitButton.appendChild(document.createTextNode("SUBMIT"));
+            //Assign a name value to the button
+            submitButton.setAttribute("name", "submit");
+            //Assign a type value to the button
+            submitButton.setAttribute("type", "submit");
+            //Assign an ID value for CSS
+            submitButton.setAttribute("id", "wbcButton");
+            //Edit the button to be larger, rounded and coloured blue
+            submitButton.setAttribute("style", "box-sizing:border-box; color:white; background-color:#FF0000; font-weight:bold; -moz-border-radius:8px; -webkit-border-radius: 8px; border-radius:8px; border-color:#FFA500;");
+
+            //Assign an event handler to the button, in this case, if the button has been clicked
+            submitButton.addEventListener('click', function (e) {
+                //Clear the message div of all children
+                while (messDiv.hasChildNodes()) {
+                    messDiv.removeChild(messDiv.lastChild);
+                };
+                //Create a Boolean ticket variable with a default value of true
+                var ticket = true;
+                //If there is no input for the senderName field
+                if (senderName.value === "") {
+                    //Change the ticket value to false
+                    ticket = false;
+                    //Change the color of the text box to red
+                    senderName.style.backgroundColor = "red";
+                //If not
+                } else {
+                    //Change the color of the text box to white
+                    senderName.style.backgroundColor = "white";
+                };
+                //If the first senderEmail input value is left blank
+                if (senderEmail.value === "") {
+                    //Change the background color of the text box to red
+                    senderEmail.style.backgroundColor = "red";
+                };
+                //If there is no input for the senderPhone field
+                if (senderPhone.value === "") {
+                    //Change the ticket value to false
+                    ticket = false;
+                    //Change the color of the text box to red
+                    senderPhone.style.backgroundColor = "red";
+                    //If not
+                } else {
+                    //Change the color of the text box to white
+                    senderPhone.style.backgroundColor = "white";
+                };
+                //If the isEmailValid boolean value is false
+                if (isEmailValid === false) {
+                    //Set ticket value to false
+                    ticket = false;
+                }
+                //If the car make value is left blank
+                if (carMake.value === "Please Select") {
+                    //Change the ticket value to false
+                    ticket = false;
+                    //Change the color of the text box to red
+                    carMake.style.backgroundColor = "red";
+                    //If not
+                } else {
+                    //Change the color of the text box to white
+                    carMake.style.backgroundColor = "white";
+                };
+                //If the car model value is left blank
+                if (carModel.value === "") {
+                    //Change the ticket value to false
+                    ticket = false;
+                    //Change the color of the text box to red
+                    carModel.style.backgroundColor = "red";
+                    //If not
+                } else {
+                    //Change the color of the text box to white
+                    carModel.style.backgroundColor = "white";
+                };
+                //If the car registration value is left blank
+                if (carReg.value === "") {
+                    //Change the ticket value to false
+                    ticket = false;
+                    //Change the color of the text box to red
+                    carReg.style.backgroundColor = "red";
+                    //If not
+                } else {
+                    //Change the color of the text box to white
+                    carReg.style.backgroundColor = "white";
+                };
+                //If the car mileage value is left blank or not an integer
+                if (carMileage.value === "") {
+                    //Change the ticket value to false
+                    ticket = false;
+                    //Change the color of the text box to red
+                    carMileage.style.backgroundColor = "red";
+                    //If not
+                } else {
+                    //Change the color of the text box to white
+                    carMileage.style.backgroundColor = "white";
+                };
+                //If the ticket value is false
+                if (ticket === false) {
+                    //Assign a text node to the message div
+                    messDiv.appendChild(document.createTextNode("Some required details are emtpy/invalid. Inquiry cannot be sent"));
+                    //If the ticket value is true
+                } else {
+                    //Assign a text node to the message div
+                    messDiv.appendChild(document.createTextNode("Your email has been sent"));
+                };
+            });
+        };
+    </script>
+</head>
+<body>
+<div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-10">
+                <div id="container">
+                        <h1 id="pageTitle">We Buy Cars</h1>
+                        <br/>
+                        <p>Note: All fields marked with (*) are compulsory</p>
+                        <br/>
+                        <p id="carFormDisplay">Loading Form</p>
+                        <br/>
+                        <p id="messDiv">Loading information</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-1"></div>
+        </div>
+    <br/>   
+    <br/>
+</body>
