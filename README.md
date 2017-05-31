@@ -15,16 +15,14 @@ Notes To Consider:
 RewriteEngine On
 
 RewriteCond %{REQUEST_FILENAME} -s [OR]
-#Ensure that the request is to a file that is a symlink
 RewriteCond %{REQUEST_FILENAME} -l [OR]
-#Ensure that the request is to a file that exists
-RewriteCond %{REQUEST_FILENAME} -d
+RewriteCond %{REQUEST_FILENAME} -d 
 
 RewriteRule ^.*$ - [NC,L]
 RewriteRule ^.*$ index.php [NC,L]
 
-RewriteCond %{REQUEST_URI}::$1 ^(/.+)(.+)::$
-RewriteRule ^(.*)$ - [E=BASE:%1]
-RewriteRule ^(.*)$ %{ENV:BASE}index.php [NC,L]
+RewriteCond %{REQUEST_URI}::$1 ^(/.+)(.+):: $ 
+RewriteRule ^(.*)$ - [E=BASE:%1] 
+RewriteRule ^(.*)$ %{ENV:BASE}index.php [NC,L] 
 
 Hope all of this helps
